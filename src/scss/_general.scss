@@ -1,0 +1,26 @@
+body {
+    font-size: 14px;
+}
+form {
+    background-color: white;
+    padding: 1em;
+}
+.input-group {
+    margin-bottom: 1em;
+
+    input, label {
+        display: block;
+    }
+    input {
+        padding: .2em;
+    }
+    label {
+        margin-bottom: .2em;
+    }
+}
+
+.demo-wrapper {
+    background: #333;
+    min-height: 100vh;
+    padding: 2em 0;
+}

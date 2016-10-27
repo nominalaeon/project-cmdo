@@ -1,0 +1,62 @@
+
+.map {
+    @include box-shadow(0, 1em, 2em, black, false);
+    border: 1px solid rgba(white, .4);
+    margin: 0 auto;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+}
+.map--hidden {
+    visibility: hidden;
+}
+
+.map-row {
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+@for $cell from 1 to 32 { //cell count maxes at 32
+    $dimension: calc(100vw / #{$cell});
+    .map-row--cells-#{$cell} {
+        .map-row__cell {
+            height: #{$dimension};
+        }
+    }
+}
+
+.map-row__cell {
+    align-content: center;
+    background-color: $color--top-0;
+    border: 1px solid transparent;
+    border-right-color: rgba(white, .4);
+    border-bottom-color: rgba(white, .2);
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+
+    &:hover {
+        &:after {
+            background-color: rgba(black, .4);
+            border-radius: 50%;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: 999;
+        }
+    }
+    &:last-child {
+        border-right-color: transparent;
+    }
+}
+
+@each $color in $colors--top {
+    $elevation: index($colors--top, $color) - 1; // zero-index to match JS
+    .map-row__cell--top-#{$elevation} {
+        background-color: $color;
+    }
+}

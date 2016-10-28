@@ -10,3 +10,12 @@
         box-shadow: $top $left $blur $color;
     }
 }
+
+@mixin size($width, $height) {
+    height: $height;
+    width: $width;
+}
+
+@mixin square($size) {
+    @include size($size, $size);
+}

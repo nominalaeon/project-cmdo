@@ -3,7 +3,8 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     z-index: 9999;
 }
 
@@ -13,4 +14,32 @@
     border-radius: 50%;
     height: 50%;
     width: 50%;
+}
+
+.user__ping {
+    @include square(50%);
+    animation: radar 3s infinite;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all ease-in-out;
+}
+
+@keyframes radar {
+    1% {
+        @include square(50%);
+        border-color: rgba(white, 1);
+    }
+    33% {
+        @include square(200%);
+        border-color: rgba(white, 0);
+    }
+    100% {
+        @include square(200%);
+        border-color: rgba(white, 0);
+    }
 }

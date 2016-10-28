@@ -25,11 +25,25 @@
                 }
             }
 
+            get $root() {
+                return this._tile.$root || $('');
+            }
+            set $root($root) {
+                this._tile.$root = $root;
+            }
+
             get elevation() {
                 return this._tile.elevation || 0;
             }
             set elevation(elevation) {
                 this._tile.elevation = elevation;
+            }
+
+            get isVisible() {
+                return this._tile.isVisible || false;
+            }
+            set isVisible(isVisible) {
+                this._tile.isVisible = isVisible;
             }
 
             get x() {

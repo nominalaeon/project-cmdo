@@ -12,13 +12,6 @@
         class TilesFactory {
             constructor(tiles) {
                 this._tiles = {};
-
-                for (var prop in tiles) {
-                    if (!tiles.hasOwnProperty(prop)) {
-                        continue;
-                    }
-                    this[prop] = tiles[prop];
-                }
             }
 
             get count() {
@@ -38,6 +31,13 @@
                 };
             }
 
+            get height() {
+                return this._tiles.height || 0;
+            }
+            set height(height) {
+                this._tiles.height = height;
+            }
+
             get rows() {
                 return this._tiles.rows || [];
             }
@@ -46,10 +46,28 @@
             }
 
             get tiles() {
-                return this._tiles.tiles || [];
+                return _.flatten(this.rows);
             }
-            set tiles(tiles) {
-                this._tiles.tiles = tiles;
+
+            get tileSize() {
+                return this._tiles.tileSize || 0;
+            }
+            set tileSize(tileSize) {
+                this._tiles.tileSize = tileSize;
+            }
+
+            get userTile() {
+                return this._tiles.userTile || tileService.createTile();
+            }
+            set userTile(userTile) {
+                this._tiles.userTile = userTile;
+            }
+
+            get width() {
+                return this._tiles.width || 0;
+            }
+            set width(width) {
+                this._tiles.width = width;
             }
 
             renderTiles(grid) {
@@ -126,6 +144,37 @@
 
                     return elevation;
                 }
+            }
+
+            resetVisibility() {
+                this.tiles.forEach((tile) => {
+                    tile.isVisible = false;
+                });
+            }
+
+            toggleVisibility(position) {
+                this.userTile = _.find(this.tiles, {
+                    x: position.x,
+                    y: position.y
+                });
+
+                this.tiles.forEach((tile) => {
+                    var delta = {
+                        e: tile.elevation - this.userTile.elevation,
+                        x: tile.x - this.userTile.x,
+                        y: tile.y - this.userTile.y
+                    };
+
+                    if (delta.e < -2 || delta.e > 1) {
+                        return;
+                    }
+
+                    if (delta.x < -2 || delta.x > 2 ||
+                        delta.y < -2 || delta.y > 2) {
+                        return;
+                    }
+                    tile.isVisible = true;
+                });
             }
         }
 

@@ -8,7 +8,6 @@
     ProjectCmdoController.$inject = ['_'];
 
     function ProjectCmdoController(_) {
-        console.log('ProjectCmdoController', _);
         var cmdo = this;
 
         _.extend(cmdo, {

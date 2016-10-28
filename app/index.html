@@ -6,11 +6,12 @@
 
         <title>cmdo</title>
 
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Game tiles">
+        <meta http-equiv="X-UA-Compatible" content=" IE=edge">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <meta name="description" content="Game tiles">
+        <meta name="viewport" content=" width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="assets/node_modules/normalize-css/normalize.css" />
         <link rel="stylesheet" href="assets/css/style.min.css" />
@@ -26,6 +27,12 @@
         <div class="demo-wrapper">
 
             <div map></div>
+
+            <form name="mapSize">
+                <div class="input-group">
+                    <button type="button" ng-click="map.onClickSubmit()">Render new map</button>
+                </div>
+            </form>
 
         </div>
 

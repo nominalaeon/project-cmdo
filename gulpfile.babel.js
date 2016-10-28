@@ -14,11 +14,9 @@ import clean from 'gulp-clean';
 import concat from 'gulp-concat';
 import cssmin from 'gulp-cssmin';
 import gnf from 'gulp-npm-files';
-import gulpCopy from 'gulp-copy';
 import header from 'gulp-header';
 import jshint from 'gulp-jshint';
 import open from 'gulp-open';
-import order from 'gulp-order';
 import plumber from 'gulp-plumber';
 import sass from 'gulp-sass';
 import uglify from 'gulp-uglify';
@@ -232,7 +230,7 @@ gulp.task('uglify', (cb) => {
  */
 
 gulp.task('watch', () => {
-    gulp.watch(root.app + '*.html').on('change', browserSync.reload);
+    gulp.watch(root.src + '**/*.html', ['copyTemplates']).on('change', browserSync.reload);
     gulp.watch(src.js + '**/*.js', ['concat', 'jshint', 'header']);
     gulp.watch(src.scss + '**/*.scss', ['css', 'header']);
 });

@@ -1,29 +1,18 @@
 <div class="map">
-    
+
     <div class="map-row map-row--cells-{{map.tiles.grid.x}}" ng-repeat="row in map.tiles.rows">
-        
-        <div class="map-row__cell map-row__cell--top-{{tile.elevation}}" ng-repeat="tile in row"></div>
-        
+
+        <div class="map-row__cell map-row__cell--top-{{tile.elevation}}"
+            data-x="{{tile.x}}"
+            data-y="{{tile.y}}"
+            ng-class="{
+                'map-row__cell--hidden': !tile.isVisible
+            }"
+            ng-click="map.onClickTile(tile)"
+            ng-repeat="tile in row"></div>
+
     </div>
-    
-    <form name="mapSize">
-        <div class="input-group">
-            <label for="rows">Rows:</label>
-            <input id="rows" name="mapSize.rows" type="text"
-                ng-change="map.onChangeDimension()"
-                ng-focus="map.onFocusDimension('rows')"
-                ng-model="map.rows" />
-        </div>
-        <div class="input-group">
-            <label for="cols">Columns:</label>
-            <input id="cols" name="mapSize.cols" type="text"
-                ng-change="map.onChangeDimension()"
-                ng-focus="map.onFocusDimension('cols')"
-                ng-model="map.cols" />
-        </div>
-        <div class="input-group">
-            <button type="button" ng-click="map.onClickSubmit()">Render new map</button>
-        </div>
-    </form>
-    
+
+    <div user></div>
+
 </div>

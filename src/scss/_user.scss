@@ -1,0 +1,16 @@
+.user {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 9999;
+}
+
+.user__dot {
+    @include box-shadow(0, 0, .4em, rgba(black, .4), false);
+    background-color: white;
+    border-radius: 50%;
+    height: 50%;
+    width: 50%;
+}

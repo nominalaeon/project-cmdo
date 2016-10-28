@@ -1,13 +1,12 @@
-
 .map {
     @include box-shadow(0, 1em, 2em, black, false);
-    border: 1px solid rgba(white, .4);
     margin: 0 auto;
     overflow-x: hidden;
     position: relative;
     width: 100%;
     max-width: 320px;
 }
+
 .map--hidden {
     visibility: hidden;
 }
@@ -18,7 +17,8 @@
     justify-content: space-between;
 }
 
-@for $cell from 1 to 32 { //cell count maxes at 32
+@for $cell from 1 to 32 {
+    //cell count maxes at 32
     $dimension: calc(100vw / #{$cell});
     .map-row--cells-#{$cell} {
         .map-row__cell {
@@ -28,16 +28,16 @@
 }
 
 .map-row__cell {
+    @include box-shadow(0, 0, 2em, rgba(black, .2), false);
     align-content: center;
     background-color: $color--top-0;
-    border: 1px solid transparent;
-    border-right-color: rgba(white, .4);
-    border-bottom-color: rgba(white, .2);
+    // border: 1px solid transparent;
+    // border-right-color: rgba(white, .4);
+    // border-bottom-color: rgba(white, .2);
     display: flex;
     flex: 1;
     justify-content: center;
     position: relative;
-
     &:hover {
         &:after {
             background-color: rgba(black, .4);
@@ -45,12 +45,34 @@
             content: '';
             display: block;
             position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
             z-index: 999;
         }
     }
     &:last-child {
         border-right-color: transparent;
+    }
+}
+
+.map-row__cell--hidden {
+    &::before {
+        background-color: rgba(black, .5);
+        content: '';
+        display: block;
+        -webkit-filter: blur(.6em);
+        -moz-filter: blur(.6em);
+        -ms-filter: blur(.6em);
+        -o-filter: blur(.6em);
+        filter: blur(.6em);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 99;
     }
 }
 

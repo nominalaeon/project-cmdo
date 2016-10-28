@@ -19,6 +19,7 @@
     "undef": true,
     "unused": true,
     "globals": {
+        "angular": true,
         "jQuery": true,
         "Modernizr": true
     }

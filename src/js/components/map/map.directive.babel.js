@@ -17,20 +17,22 @@
         return directive;
     }
 
-    MapController.$inject = ['$element', '$timeout', '_', 'tilesFactory'];
+    MapController.$inject = ['$element', '$rootScope', '$timeout', '_', 'tilesFactory', 'userFactory'];
 
-    function MapController($element, $timeout, _, tilesFactory) {
+    function MapController($element, $rootScope, $timeout, _, tilesFactory, userFactory) {
 
-        console.log('MapController');
         var map = this;
 
         _.extend(map, {
             onChangeDimension: onChangeDimension,
             onClickSubmit: onClickSubmit,
+            onClickTile: onClickTile,
             onFocusDimension: onFocusDimension,
 
+            $cells: [],
+            $rows: [],
+
             cols: 16,
-            name: 'TILES',
             rows: 16,
             tiles: tilesFactory
         });
@@ -43,8 +45,18 @@
                 y: map.rows
             });
 
-            $timeout(setMap);
+            $timeout(initMap);
         }
+
+        function initMap() {
+            setHeights();
+
+            $element.removeClass('map--hidden');
+
+            $rootScope.$broadcast('readyMap');
+        }
+
+        ////
 
         function onChangeDimension() {
             if (map.cols > 16) {
@@ -57,7 +69,24 @@
             }
         }
 
+        function onClickTile(tile) {
+            var deltaX = userFactory.x - tile.x;
+            var deltaY = userFactory.y - tile.y;
+
+            if (deltaX < -1 || deltaX > 1 ||
+                deltaY < -1 || deltaY > 1) {
+                return;
+            }
+
+            $rootScope.$broadcast('onClickTile', {
+                tile: tile
+            });
+        }
+
         function onClickSubmit() {
+            map.$cells = [];
+            map.$rows = [];
+
             map.cols = map.cols > 16 ? 16 : map.cols;
             map.rows = map.rows > 16 ? 16 : map.rows;
 
@@ -71,22 +100,30 @@
         }
 
         function setHeights() {
-            var $cells = $element.find('.map-row__cell');
-            var height = 0;
+            map.$rows = $element.find('.map-row');
 
-            $cells.each(_setHeight);
+            map.$rows.each((index, row) => {
+                map.$cells[index] = $(row).find('.map-row__cell');
+                map.$cells[index].each(_setTile.bind(this, index));
 
-            function _setHeight(index, cell) {
-                if (!height) {
-                    height = $(cell).outerWidth();
+                map.tiles.height = $element.outerHeight();
+                map.tiles.width = $element.outerWidth();
+            });
+
+            function _setTileSize($cell) {
+                if (!map.tiles.tileSize) {
+                    map.tiles.tileSize = $cell.outerWidth();
                 }
-                $(cell).outerHeight(height);
-            }
-        }
 
-        function setMap() {
-            setHeights();
-            $element.removeClass('map--hidden');
+                $cell.outerHeight(map.tiles.tileSize);
+                $cell.outerWidth(map.tiles.tileSize);
+            }
+
+            function _setTile(rowIndex, cellIndex, cell) {
+                _setTileSize($(cell));
+
+                tilesFactory.rows[rowIndex][cellIndex].$root = $(cell);
+            }
         }
     }
 

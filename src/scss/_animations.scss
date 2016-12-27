@@ -1,0 +1,15 @@
+
+@keyframes radar {
+    1% {
+        @include square(40%);
+        border-color: rgba(white, 1);
+    }
+    33% {
+        @include square(110%);
+        border-color: rgba(white, 0);
+    }
+    100% {
+        @include square(100%);
+        border-color: rgba(white, 0);
+    }
+}

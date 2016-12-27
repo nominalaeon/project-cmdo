@@ -10,36 +10,19 @@
 
 .user__dot {
     @include box-shadow(0, 0, .4em, rgba(black, .4), false);
+    @include square(40%);
     background-color: white;
     border-radius: 50%;
-    height: 50%;
-    width: 50%;
 }
 
 .user__ping {
     @include square(50%);
-    animation: radar 3s infinite;
+    animation: radar 2s infinite;
     background-color: transparent;
     border: 2px solid #fff;
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     transition: all ease-in-out;
-}
-
-@keyframes radar {
-    1% {
-        @include square(50%);
-        border-color: rgba(white, 1);
-    }
-    33% {
-        @include square(200%);
-        border-color: rgba(white, 0);
-    }
-    100% {
-        @include square(200%);
-        border-color: rgba(white, 0);
-    }
 }

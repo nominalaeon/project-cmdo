@@ -31,9 +31,6 @@
     @include box-shadow(0, 0, 2em, rgba(black, .2), false);
     align-content: center;
     background-color: $color--top-0;
-    // border: 1px solid transparent;
-    // border-right-color: rgba(white, .4);
-    // border-bottom-color: rgba(white, .2);
     display: flex;
     flex: 1;
     justify-content: center;
@@ -59,14 +56,14 @@
 
 .map-row__cell--hidden {
     &::before {
-        background-color: rgba(black, .5);
+        background-color: rgba(black, .6);
         content: '';
         display: block;
-        -webkit-filter: blur(.6em);
-        -moz-filter: blur(.6em);
-        -ms-filter: blur(.6em);
-        -o-filter: blur(.6em);
-        filter: blur(.6em);
+        // -webkit-filter: blur(.6em);
+        // -moz-filter: blur(.6em);
+        // -ms-filter: blur(.6em);
+        // -o-filter: blur(.6em);
+        // filter: blur(.6em);
         position: absolute;
         top: 0;
         right: 0;

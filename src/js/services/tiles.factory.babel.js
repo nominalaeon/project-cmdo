@@ -158,23 +158,22 @@
                     y: position.y
                 });
 
-                this.tiles.forEach((tile) => {
+                this.tiles.forEach(_isVisible.bind(this));
+
+                function _isVisible(tile) {
                     var delta = {
                         e: tile.elevation - this.userTile.elevation,
                         x: tile.x - this.userTile.x,
                         y: tile.y - this.userTile.y
                     };
 
-                    if (delta.e < -2 || delta.e > 1) {
-                        return;
-                    }
+                    var isFar = delta.x < -2 || delta.x > 2 || delta.y < -2 || delta.y > 2;
+                    var isHigh = delta.e < -1 || delta.e > 1;
+                    var isNear = delta.x < 2 && delta.x > -2 && delta.y < 2 && delta.y > -2;
 
-                    if (delta.x < -2 || delta.x > 2 ||
-                        delta.y < -2 || delta.y > 2) {
-                        return;
-                    }
-                    tile.isVisible = true;
-                });
+                    console.log(tile.x, tile.y, !isFar, !isHigh, isNear, delta);
+                    tile.isVisible = (!isFar && !isHigh) || isNear;
+                }
             }
         }
 

@@ -32,8 +32,8 @@
             $cells: [],
             $rows: [],
 
-            cols: 16,
-            rows: 16,
+            cols: 12,
+            rows: 12,
             tiles: tilesFactory
         });
 

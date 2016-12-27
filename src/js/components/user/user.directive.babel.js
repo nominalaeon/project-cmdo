@@ -24,7 +24,7 @@
         var user = this;
 
         _.extend(user, {
-
+            uf: userFactory
         });
 
         var stopInitListener = $rootScope.$on('readyMap', init);
@@ -47,6 +47,7 @@
         }
 
         function bindEvents() {
+            userFactory.moves = userFactory.moves + 1;
             userFactory.isSet = true;
 
             stopInitListener = $rootScope.$on('readyMap', reInit);
@@ -54,8 +55,13 @@
         }
 
         function onClickTile(event, args) {
+            if (userFactory.x === args.tile.x && userFactory.y === args.tile.y) {
+                return;
+            }
+
             userFactory.x = args.tile.x;
             userFactory.y = args.tile.y;
+
             reInit();
         }
 

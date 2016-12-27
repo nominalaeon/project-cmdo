@@ -28,7 +28,7 @@
 }
 
 .map-row__cell {
-    @include box-shadow(0, 0, 2em, rgba(black, .2), false);
+    @include box-shadow(0, 0, 2em, rgba(black, .1), false);
     align-content: center;
     background-color: $color--top-0;
     display: flex;

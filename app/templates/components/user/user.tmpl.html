@@ -1,6 +1,9 @@
 <div class="user">
 
-    <div class="user__dot"></div>
+    <div class="user__dot" title="{{'Troop count: ' + user.uf.troopers.length}}">
+        <div class="user__trooper" ng-repeat="trooper in user.uf.troopers"></div>
+    </div>
+
     <div class="user__ping"></div>
 
 </div>

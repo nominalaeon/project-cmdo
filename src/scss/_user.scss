@@ -2,17 +2,28 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 9999;
 }
 
-.user__dot {
+
+/*.user__dot {
     @include box-shadow(0, 0, .4em, rgba(black, .4), false);
     @include square(40%);
     background-color: white;
     border-radius: 50%;
+}*/
+
+.user__dot {
+    @include square(100%);
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: hidden;
 }
 
 .user__ping {
@@ -20,11 +31,28 @@
     animation: radar 2s infinite;
     pointer-events: none;
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 2px solid $color--white;
     border-radius: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: all ease-in-out;
+}
+
+$star-outline: rgba($color--white, .4);
+
+.user__trooper {
+    @extend .icon__trooper;
+    @include square(30%);
+    line-height: 30%;
+    &::before {
+        color: $color--trooper;
+        font-size: 50%;
+        text-shadow:
+            -1px -1px 0 $star-outline,
+            1px -1px 0 $star-outline,
+            -1px 1px 0 $star-outline,
+            1px 1px 0 $star-outline;
+    }
 }

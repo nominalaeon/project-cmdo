@@ -1,12 +1,25 @@
-$color--top-0: #1d59ba; // Ocean
-$color--top-1: #fcf9d4; // Beach
-$color--top-2: #daef66;
-$color--top-3: #6faf21;
-$color--top-4: #3a770c;
-$color--top-5: #194a0b; // Peak
+$color--black: #000;
+$color--white: #fff;
+
+/**
+ * topography colors
+ */
+
+$color--top-0: #AEEEE3; // Ocean
+$color--top-1: #E9FCB8; // Beach
+$color--top-2: #DAF98B;
+$color--top-3: #60D840;
+$color--top-4: #30b30d;
+$color--top-5: #2c7c17; // Peak
 $colors--top: $color--top-0,
 $color--top-1,
 $color--top-2,
 $color--top-3,
 $color--top-4,
 $color--top-5;
+
+/**
+ * user colors
+ */
+
+$color--trooper: #00378F; // #E34A5C;

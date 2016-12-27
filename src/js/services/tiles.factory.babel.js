@@ -83,7 +83,7 @@
                 var OCEAN = this.grid.x - 1;
                 var MIN = 2;
                 var MAX = 5;
-                var elevation = MIN;
+                var elevation = MAX;
                 var peaks = 0;
                 var rows = [];
 

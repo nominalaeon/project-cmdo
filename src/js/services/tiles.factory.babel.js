@@ -167,12 +167,12 @@
                         y: tile.y - this.userTile.y
                     };
 
-                    var isFar = delta.x < -2 || delta.x > 2 || delta.y < -2 || delta.y > 2;
-                    var isHigh = delta.e < -1 || delta.e > 1;
-                    var isNear = delta.x < 2 && delta.x > -2 && delta.y < 2 && delta.y > -2;
+                    var isFar = delta.x <= -3 || delta.x >= 3 || delta.y <= -3 || delta.y >= 3; // x/y = -3- || 3+
+                    var isHigh = delta.e <= -4 || delta.e >= 2; // e = -4- || 2+
+                    var isLow = delta.e <= 2; // e = 2-
+                    var isNear = delta.x <= 1 && delta.x >= -1 && delta.y <= 1 && delta.y >= -1; // x/y = -1+ || 1-
 
-                    console.log(tile.x, tile.y, !isFar, !isHigh, isNear, delta);
-                    tile.isVisible = (!isFar && !isHigh) || isNear;
+                    tile.isVisible = (!isFar && !isHigh) || (isNear && isLow);
                 }
             }
         }
